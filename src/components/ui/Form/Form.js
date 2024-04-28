@@ -1,61 +1,30 @@
-import styles from './Form.module.css'
+import getClasses from '@js/getClasses.js'
+import getElement from '../../../js/getElement'
 
-export default class Form {
-  #params
+import styles from './form.module.css'
 
-  /**
-   * @typedef {object} element
-   * @property {String|String[]} classes
-   * @property {String} id
-   * @property {String} name
-   */
+/**
+ * @typedef {import("../../../js/getElement").props} props
+ */
 
-  /**
-   * @param {element} element
-   * {
-   * classes = [styles.form],
-   * id = '',
-   * name = '',
-   * }
-   */
-  constructor(element) {
-    this.#params = {
-      ...this.#getDefaultParams(),
-      ...element,
-    }
+/**
+ * @param {props} props свойства элемента
+ * @returns элемент
+ */
+export const form = (props) => {
+  const { classes, ...rest } = props
+
+  const classesArr = [...getClasses(classes), styles.form]
+
+  const elementProps = {
+    ...rest,
+    tag: 'form',
+    classes: classesArr,
   }
 
-  #getDefaultParams() {
-    return { classes: [], id: '', name: '' }
-  }
+  const input = getElement(elementProps)
 
-  #getClasses(classes) {
-    const classesArray = Array.isArray(classes) ? classes : [classes]
-
-    return classesArray.reduce(
-      (acc, className) => {
-        if (className) return [...acc, className]
-        return acc
-      },
-      [styles.form],
-    )
-  }
-
-  /**
-   * @returns элемент
-   */
-  get element() {
-    return this.#createElement()
-  }
-
-  #createElement() {
-    const element = document.createElement('form')
-
-    element.classList.add(...this.#getClasses(this.#params.classes))
-
-    this.#params.id && (element.id = this.#params.id)
-    this.#params.name && (element.id = this.#params.name)
-
-    return element
-  }
+  return input
 }
+
+export default form

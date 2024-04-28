@@ -1,61 +1,28 @@
-import styles from './Label.module.css'
+import getClasses from '@js/getClasses.js'
+import getElement from '@js/getElement'
 
-export default class Label {
-  #params
+import styles from './label.module.css'
 
-  /**
-   * @typedef {object} element
-   * @property {String|String[]} classes
-   * @property {String} id
-   * @property {String} title
-   */
+/**
+ * @typedef {import("@js/getElement").props} props
+ */
 
-  /**
-   * @param {element} element
-   * {
-   * classes = [styles.Label],
-   * id = '',
-   * title = '',
-   * }
-   */
-  constructor(element) {
-    this.#params = {
-      ...this.#getDefaultParams(),
-      ...element,
-    }
+/**
+ * @param {props} props свойства элемента
+ * @returns HTMLElement
+ */
+export const label = (props) => {
+  const { classes, ...rest } = props
+
+  const classesArr = [...getClasses(classes), styles.label]
+
+  const elementProps = {
+    ...rest,
+    tag: 'label',
+    classes: classesArr,
   }
 
-  #getDefaultParams() {
-    return { classes: [], id: '', title: '' }
-  }
-
-  #getClasses(classes) {
-    const classesArray = Array.isArray(classes) ? classes : [classes]
-
-    return classesArray.reduce(
-      (acc, className) => {
-        if (className) return [...acc, className]
-        return acc
-      },
-      [styles.label],
-    )
-  }
-
-  /**
-   * @returns элемент
-   */
-  get element() {
-    return this.#createElement()
-  }
-
-  #createElement() {
-    const element = document.createElement('label')
-
-    element.classList.add(...this.#getClasses(this.#params.classes))
-
-    this.#params.id && (element.id = this.#params.id)
-    this.#params.title && (element.textContent = this.#params.title)
-
-    return element
-  }
+  return getElement(elementProps)
 }
+
+export default label

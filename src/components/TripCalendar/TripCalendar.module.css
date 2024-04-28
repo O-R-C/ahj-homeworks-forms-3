@@ -1,0 +1,18 @@
+.app {
+  box-shadow: 4px 4px 8px 0 rgba(34, 60, 80, 0.2);
+}
+
+.app-title {
+  margin: 0 0 10px;
+
+  text-align: center;
+  font-weight: normal;
+}
+
+.checkbox-checked {
+  background-image: url("@images/checked.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 20px;
+  border: none;
+}

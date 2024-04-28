@@ -1,75 +1,30 @@
-import styles from './Input.module.css'
+import getClasses from '@js/getClasses.js'
+import getElement from '@js/getElement'
 
-export default class Input {
-  #params
+import styles from './input.module.css'
 
-  /**
-   * @typedef {object} element
-   * @property {String|String[]} classes
-   * @property {String} type
-   * @property {String} id
-   * @property {String} placeholder
-   * @property {boolean} required
-   */
+/**
+ * @typedef {import("../../../js/getElement").props} props
+ */
 
-  /**
-   * @param {element} element
-   * {
-   * classes = [styles.input],
-   * id = '',
-   * name = '',
-   * type = 'text',
-   * required = true,
-   * placeholder = '...'
-   * }
-   */
-  constructor(element) {
-    this.#params = {
-      ...this.#getDefaultParams(),
-      ...element,
-    }
+/**
+ * @param {props} props свойства элемента
+ * @returns HTMLElement
+ */
+export const input = (props) => {
+  const { classes, ...rest } = props
+
+  const classesArr = [...getClasses(classes), styles.input]
+
+  const elementProps = {
+    ...rest,
+    tag: 'input',
+    classes: classesArr,
   }
 
-  #getDefaultParams() {
-    return {
-      classes: [],
-      id: '',
-      type: 'text',
-      required: false,
-      placeholder: '...',
-    }
-  }
+  const input = getElement(elementProps)
 
-  #getClasses(classes) {
-    const classesArray = Array.isArray(classes) ? classes : [classes]
-
-    return classesArray.reduce(
-      (acc, className) => {
-        if (className) return [...acc, className]
-        return acc
-      },
-      [styles.input],
-    )
-  }
-
-  /**
-   * @returns элемент
-   */
-  get element() {
-    return this.#createElement()
-  }
-
-  #createElement() {
-    const element = document.createElement('input')
-
-    element.type = this.#params.type
-    element.required = this.#params.required
-    element.placeholder = this.#params.placeholder
-    element.classList.add(...this.#getClasses(this.#params.classes))
-
-    this.#params.id && (element.id = this.#params.id)
-    this.#params.name && (element.name = this.#params.name)
-
-    return element
-  }
+  return input
 }
+
+export default input

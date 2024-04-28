@@ -1,0 +1,10 @@
+.checkbox-wrapper {
+  width: 20px;
+  height: 20px;
+  border: 1px solid #ccc;
+}
+
+.checkbox {
+  display: none;
+
+}

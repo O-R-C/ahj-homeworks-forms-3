@@ -4,7 +4,7 @@ const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
-const isProduction = process.env.NODE_ENV == 'production'
+const isProduction = process.env.NODE_ENV === 'production'
 
 const stylesHandler = isProduction ? MiniCssExtractPlugin.loader : 'style-loader'
 
@@ -32,8 +32,10 @@ const config = {
     alias: {
       '@': path.resolve(__dirname, 'src'),
       '@js': path.resolve(__dirname, 'src/js'),
+      '@images': path.resolve(__dirname, 'src/images'),
       '@assets': path.resolve(__dirname, 'src/assets'),
       '@components': path.resolve(__dirname, 'src/components'),
+      '@ui': path.resolve(__dirname, 'src/components/ui'),
       // ...etc
     },
   },
@@ -63,7 +65,7 @@ const config = {
                 auto: true,
                 localIdentName: '[local]--[hash:base64:5]',
                 namedExport: false,
-                exportLocalsConvention: 'as-is',
+                exportLocalsConvention: 'camelCase',
               },
             },
           },
@@ -90,11 +92,12 @@ module.exports = () => {
   if (isProduction) {
     config.mode = 'production'
 
+    // noinspection JSCheckFunctionSignatures
     config.plugins.push(
       new MiniCssExtractPlugin({
         filename: '[name].css',
         chunkFilename: '[id].css',
-      })
+      }),
     )
   } else {
     config.mode = 'development'
