@@ -1,3 +1,5 @@
+// noinspection JSUnusedGlobalSymbols
+
 import { FlatCompat } from '@eslint/eslintrc'
 import pluginJs from '@eslint/js'
 import eslintPluginPrettier from 'eslint-plugin-prettier'

@@ -1,0 +1,34 @@
+.ticket {
+  min-width: 200px;
+  min-height: 50px;
+  padding: 20px;
+
+  flex-direction: column;
+  gap: 10px;
+
+  border-radius: 10px;
+  border: none;
+  box-shadow: 4px 4px 8px 0 rgba(34, 60, 80, 0.2);
+}
+
+
+.ticket:focus-visible {
+  outline: none;
+}
+
+.ticket > div {
+  display: flex;
+  justify-content: space-between;
+  width: 200px;
+}
+
+.ticket::backdrop {
+  background-image: linear-gradient(
+      45deg,
+      magenta,
+      rebeccapurple,
+      dodgerblue,
+      green
+  );
+  opacity: 0.75;
+}

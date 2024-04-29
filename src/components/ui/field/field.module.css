@@ -1,9 +1,0 @@
-.field {
-  width: 40%;
-}
-
-.label {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}

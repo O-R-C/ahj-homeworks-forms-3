@@ -6,11 +6,10 @@ import styles from './ticketForm.module.css'
 
 /**
  *
- * @param {String|String[]} classes классы элемента
  * @returns HTMLElement
  */
-export const ticketForm = (classes) => {
-  const form = getElement({ classes: [classes, styles.form], tag: 'form' })
+export const ticketForm = () => {
+  const form = getElement({ classes: styles.ticketForm, tag: 'form' })
   const fields = getElement({ classes: styles.fields, tag: 'div' })
   const fieldThereEl = fieldThere()
   const fieldReturnEl = fieldReturn()

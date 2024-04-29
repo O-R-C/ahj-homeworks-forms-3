@@ -2,13 +2,13 @@ import getClasses from '../getClasses'
 
 describe('should returns array', () => {
   it('empty array', () => {
-    expect(getClasses()).toEqual([])
+    expect(getClasses('')).toEqual([])
   })
   const classes = [123, true, '', '321', 'class', null, {}]
-  it('string array', () => {
+  it('strings array', () => {
     expect(getClasses(classes)).toEqual(['321', 'class'])
   })
-  it('get multi array => string array', () => {
+  it('get multi array => strings array', () => {
     const arr = []
     arr.push(classes)
     arr.push(classes)

@@ -9,9 +9,10 @@ import styles from './fieldReturn.module.css'
  */
 export const fieldReturn = (classes) => {
   const fieldEl = field([classes, styles.field], 'return', 'Обратно')
-  const checkboxEl = checkboxReturn(styles.checkboxReturn)
+  const checkboxEl = checkboxReturn()
 
   fieldEl.querySelector('label').append(checkboxEl)
+  fieldEl.querySelector('input[type="date"]').disabled = true
 
   return fieldEl
 }
