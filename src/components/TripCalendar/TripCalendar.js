@@ -59,7 +59,7 @@ export default class TripCalendar {
 
   /**
    * Обработка изменения чекбокса "Обратно"
-   * @param e Event
+   * @param {Event} e
    */
   #onChangeCheckboxReturn = (e) => {
     this.#ui.toggleReturn(e.currentTarget)
@@ -68,7 +68,7 @@ export default class TripCalendar {
 
   /**
    * Обработка события focus на поле ввода
-   * @param e Event
+   * @param {Event} e
    */
   #onClickInputDate = (e) => {
     this.#openCalendar(e.currentTarget)
@@ -76,7 +76,7 @@ export default class TripCalendar {
 
   /**
    * Обработка события submit у формы
-   * @param e Event
+   * @param {Event} e
    */
   #onSubmitTicketForm = (e) => {
     e.preventDefault()

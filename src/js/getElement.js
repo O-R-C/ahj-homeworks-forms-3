@@ -15,6 +15,7 @@ import getClasses from './getClasses.js'
  * @property {string=} placeholder
  * @property {boolean=} hidden
  * @property {boolean=} required
+ * @property {Object=} data
  */
 
 /**
@@ -31,7 +32,7 @@ export const getElement = (props) => {
   const restProps = Object.keys(rest)
   restProps.length && restProps.forEach((key) => (element[key] = rest[key]))
 
-  data && Object.keys(data).forEach((key) => (element.dataset[key] = rest[key]))
+  data && Object.keys(data).forEach((key) => (element.dataset[key] = data[key]))
 
   return element
 }
