@@ -167,7 +167,7 @@ export default class TripCalendar {
   }
 
   #getFormattedDate(date) {
-    return date.split('-').reverse().join('.')
+    return moment(date).format('DD.MM.YYYY')
   }
 
   /**
